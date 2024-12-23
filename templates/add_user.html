@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить пользователя</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить пользователя</h1>
+        <form method="POST">
+            <label for="name">Имя:</label>
+            <input type="text" name="name" required>
+            <br>
+            <label for="email">Электронная почта:</label>
+            <input type="email" name="email" required>
+            <br>
+            <label for="age">Возраст:</label>
+            <input type="number" name="age" required>
+            <br>
+            <button type="submit" class="btn">Добавить пользователя</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">Назад на главную</a></p>
+    </div>
+</body>
+</html>
+

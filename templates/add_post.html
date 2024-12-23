@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавить пост</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Добавить пост</h1>
+        <form method="POST">
+            <label for="title">Заголовок:</label>
+            <input type="text" name="title" required>
+            <br>
+            <label for="content">Текст поста:</label>
+            <textarea name="content" required></textarea>
+            <br>
+            <label for="user_id">Автор:</label>
+            <select name="user_id" required>
+                {% for user in users %}
+                <option value="{{ user.id }}">{{ user.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <button type="submit" class="btn">Создать пост</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">Назад на главную</a></p>
+    </div>
+</body>
+</html>
+

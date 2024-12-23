@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.content }}</p>
+        <p>Автор: <a href="{{ url_for('user', user_id=post.author.id) }}">{{ post.author.name }}</a></p>
+        <h2>Комментарии:</h2>
+        <div class="comments">
+            {% for comment in post.comments %}
+            <div class="comment">
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text }}</p>
+                <p>{{ comment.created_at.strftime('%d.%m.%Y %H:%M') }}</p>
+                <a href="{{ url_for('delete_comment', comment_id=comment.id) }}" class="btn-delete">Удалить</a>
+            </div>
+            {% endfor %}
+        </div>
+        <h3>Добавить комментарий:</h3>
+        <form action="{{ url_for('add_comment', post_id=post.id) }}" method="POST">
+            <input type="text" name="author" placeholder="Ваше имя" required>
+            <textarea name="text" placeholder="Ваш комментарий" required></textarea>
+            <button type="submit" class="btn">Добавить</button>
+        </form>
+        <p><a href="{{ url_for('index') }}">Назад на главную</a></p>
+    </div>
+</body>
+</html>

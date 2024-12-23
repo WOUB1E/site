@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>{{ user.name }}</h1>
+        <p>Email: {{ user.email }}</p>
+        <p>Возраст: {{ user.age }}</p>
+        <h2>Посты пользователя:</h2>
+        <div class="posts">
+            {% for post in user.posts %}
+            <div class="post-card">
+                <h3>{{ post.title }}</h3>
+                <p>Дата создания: {{ post.created_at.strftime('%d.%m.%Y %H:%M') }}</p>
+                <a href="{{ url_for('post', post_id=post.id) }}">Перейти к посту</a>
+            </div>
+            {% endfor %}
+        </div>
+		
+        <p><a href="{{ url_for('index') }}">Назад на главную</a></p>
+    </div>
+</body>
+</html>
+
